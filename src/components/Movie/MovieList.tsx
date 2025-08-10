@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { DeleteMovie, GetMovies } from "../../api/MovieService";
 import { Link } from "react-router-dom";
 import { API_URL, subscription_key } from "../../config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 interface Movie {
   id: string;
@@ -190,13 +192,13 @@ const MovieList = () => {
                           to={`/movielist/edit/${item.id}`}
                           className="me-2 text-secondary"
                         >
-                          <i className="fas fa-edit"></i>
+                          <FontAwesomeIcon icon={faEdit} />
                         </Link>
                         <button
                           className="btn btn-link text-danger p-0"
                           onClick={() => handleDelete(item.id)}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
                       </div>
                     </div>
