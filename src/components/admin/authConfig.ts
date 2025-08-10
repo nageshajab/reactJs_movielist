@@ -2,7 +2,7 @@
 import { CLIENT_ID } from "../../config"
 import { TENANT_ID } from "../../config"
 import { redirectUri } from "../../config"
-
+ 
 export const msalConfig = {
   auth: {
     clientId: CLIENT_ID,
