@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { API_URL, subscription_key } from "../../config";
 import { toast } from "react-toastify";
 import { useMsal } from "@azure/msal-react";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode"; // ✅ correct
 
 const Login = () => {
   const { instance } = useMsal();
@@ -11,6 +13,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  interface GoogleTokenPayload {
+    email: string;
+    name: string;
+    picture: string;
+    sub: string;
+  }
 
   const handleLogin = () => {
     instance.loginPopup().then((response) => {
@@ -120,6 +128,33 @@ const Login = () => {
                   <i className="fa-brands fa-microsoft me-2"></i>Login With
                   Azure
                 </button>
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    if (credentialResponse.credential) {
+                      const decoded = jwtDecode<GoogleTokenPayload>(
+                        credentialResponse.credential
+                      );
+
+                      console.log("Email:", decoded.email);
+                      console.log("Name:", decoded.name);
+                      console.log("Picture:", decoded.picture);
+
+                      localStorage.setItem("token", decoded.sub); // Google user ID
+                      localStorage.setItem("username", decoded.email);
+
+                      toast.success(`Welcome ${decoded.name}!`, {
+                        position: "top-right",
+                        autoClose: 2000,
+                      });
+
+                      navigate("/movielist");
+                    }
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+
                 {error && (
                   <p className="text-danger text-center mt-2">{error}</p>
                 )}
