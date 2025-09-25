@@ -56,11 +56,6 @@ const Layout = () => {
                   Movies
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/mytravel">
-                  My Travel
-                </Link>
-              </li>
             </ul>
             <div className="d-flex">
               {token ? (

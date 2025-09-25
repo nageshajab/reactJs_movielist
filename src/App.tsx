@@ -6,7 +6,6 @@ import Layout from "./Layout";
 import { ToastContainer } from "react-toastify";
 import { GOOGLE_CLIENT_ID } from "./config";
 
-const MyTravel = lazy(() => import("./components/travelhistory/MyTravel"));
 const MovieList = lazy(() => import("./components/Movie/MovieList"));
 const MovieForm = lazy(() => import("./components/Movie/CreateMovie"));
 const Login = lazy(() => import("./components/admin/Login"));
@@ -43,7 +42,6 @@ function App() {
             <Route path="movielist" element={<MovieList />} />
             <Route path="movielist/create" element={<MovieForm />} />
             <Route path="movielist/edit/:id" element={<MovieForm />} />
-            <Route path="mytravel" element={<MyTravel />} />
           </Route>
         </Routes>
         <ToastContainer />
