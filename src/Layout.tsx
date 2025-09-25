@@ -66,10 +66,41 @@ const Layout = () => {
                   >
                     Welcome, {username}!
                   </Dropdown.Toggle>
+
                   <Dropdown.Menu>
                     <Dropdown.Item as={Link} to="/changepassword">
                       Change Password
                     </Dropdown.Item>
+
+                    <Dropdown.Divider />
+                    <Dropdown.Header>My Other Sites</Dropdown.Header>
+
+                    <Dropdown.Item
+                      as="a"
+                      href="https://mango-dune-01a4d7d10.2.azurestaticapps.net/login"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      My App
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as="a"
+                      href="https://white-glacier-04f78251e.1.azurestaticapps.net/index.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      My Notes
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as="a"
+                      href="https://jolly-sand-0eef91900.2.azurestaticapps.net/map"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      My Travel
+                    </Dropdown.Item>
+
+                    <Dropdown.Divider />
                     <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
